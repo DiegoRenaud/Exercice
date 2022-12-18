@@ -12,6 +12,16 @@ def importer(url):
     df = pd.DataFrame(wb)
     return(df)
 
+#aggrégation mensuelle des données par année
+def aggreg_mensuel(data,year):
+    df_annulation_annuel = df_retards.loc[(df_retards['annee'] == year),[data,'mois']]
+    A = []
+    for i in range(12):
+        df = df_annulation_annuel.loc[(df_annulation_annuel['mois'] == i+1),[data]]
+        x = np.mean(df[data])
+        A.append(x)
+    return(A)
+
 #régression linéaire
 def regression(x, y):
     x_reg = sm.add_constant(x)
