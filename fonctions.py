@@ -34,7 +34,9 @@ def aggreg_mensuel(df, data, annee):
 
 #aggrégation d'une colonne par mois sur l'entièreté de la période
 def aggreg_totale(df, data):
-    A = aggreg_mensuel(df, data, 2018) + aggreg_mensuel(df, data, 2019) + aggreg_mensuel(df, data, 2020) + aggreg_mensuel(df, data, 2021) + aggreg_mensuel(df, data, 2022)
+    A = aggreg_mensuel(df, data, 2018)
+    for i in range(4):
+        A = A + aggreg_mensuel(df, data, 2018+i+1)
     return(A)
 
 #passage des pourcentages aux niveaux
