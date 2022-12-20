@@ -22,6 +22,21 @@ def regression(x, y):
     y_reg = y.values.ravel()
     return(sm.OLS(y_reg, x_reg).fit())
 
+#aggrégation d'une colonne par mois sur une année 
+def aggreg_mensuel(df, data, annee):
+    df_annulation_annuel = df.loc[(df['annee'] == annee),[data,'mois']]
+    A = []
+    for i in range(12):
+        df = df_annulation_annuel.loc[(df_annulation_annuel['mois'] == i+1),[data]]
+        x = np.mean(df[data])
+        A.append(x)
+    return(A)
+
+#aggrégation d'une colonne par mois sur l'entièreté de la période
+def aggreg_totale(df, data):
+    A = aggreg_mensuel(df, data, 2018) + aggreg_mensuel(df, data, 2019) + aggreg_mensuel(df, data, 2020) + aggreg_mensuel(df, data, 2021) + aggreg_mensuel(df, data, 2022)
+    return(A)
+
 #passage des pourcentages aux niveaux
 def niveau(df, nb_retards, causes):
     for cause in causes :
