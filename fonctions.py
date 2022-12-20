@@ -83,3 +83,10 @@ def prediction(x, y, afficher = True):
         g.axhline(0, color = "red")
     
     return([X_train, y_train])
+
+def afficher_hist(df, causes):
+    for i in range(len(causes)):
+        plt.subplot(4,2,i+1)
+        plt.hist(df[causes[i]], bins = 20)
+        plt.title(causes[i])
+        plt.gcf().subplots_adjust(wspace = 0.5, hspace = 0.8)
