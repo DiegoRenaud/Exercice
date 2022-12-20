@@ -1,13 +1,17 @@
-import requests
-import folium
 import pandas as pd
 import numpy as np
-import statsmodels.api as sm
-from sklearn.model_selection import train_test_split
+import requests
+import folium
 import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
 import seaborn as sns
+import statsmodels.api as sm
 import sklearn.metrics
+from sklearn import svm
+from sklearn.svm import SVC 
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import Lasso
 
 #importation des donnees
 def importer(url):
