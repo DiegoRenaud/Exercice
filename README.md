@@ -10,3 +10,4 @@ Nous avons construit notre analyse à partir de différentes bases de données r
  -   Analyse descriptive et représentation graphique
  -   Modélisation
 
+Pour accéder au projet, lire le fichier Notebook_pincipal.ipynb (sauf pour le mini-jeu qui est dans le dossier mini-jeu).
