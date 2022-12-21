@@ -45,36 +45,27 @@ class Projectile:
         self.pos[1] += self.speed
         
     def isCollision(self, player):
-        # Si on est a la meme hauteur
+        #Récupération des coordonnées haut et bas des objets
         hautPlayer = player.pos[1] - player.hauteur/2
         basPlayer = player.pos[1] + player.hauteur/2
         hautProjectile = self.pos[1] - self.hauteur/2
         basProjectile = self.pos[1] + self.hauteur/2
-        print("proj haut", hautProjectile)
-        print("proj bas", basProjectile)
-        print("player haut", hautPlayer)
-        print("player bas", basPlayer)
+        # S'il y a chevauchement vertical (2 conditions)
+        
         if basProjectile >= hautPlayer:
-            # mais qu on est pas en dessous
             if hautProjectile <= basPlayer:
-                print("collision1")
-                # Si jamais il y a chevauchement
+                #Récupération des coordonnées droite et gauche des objets
                 posProjectileDroite = self.pos[0] + self.largeur/2
                 posProjectileGauche = self.pos[0] - self.largeur/2
                 posPlayerDroite = player.pos[0] + player.largeur/2
                 posPlayerGauche = player.pos[0] - player.largeur/2
-                #print("proj droite", posProjectileDroite)
-                #print("proj gauche", posProjectileGauche)
-                #print("player droite", posPlayerDroite)
-                #print("player gauche", posPlayerGauche)
+                
+                # Si jamais il y a chevauchement horizontal (3 cas possibles)
                 if posPlayerDroite <= posProjectileDroite and posPlayerDroite >= posProjectileGauche:
-                    #print("collision2")
                     return True
                 if posPlayerGauche <= posProjectileDroite and posPlayerGauche >= posProjectileGauche:
-                    #print("collision2")
                     return True
                 if posPlayerGauche <= posProjectileGauche and posPlayerDroite >= posProjectileDroite:
-                    #print("collision2")
                     return True
 
         return False
@@ -108,7 +99,7 @@ class Projectiles:
         if generation < self.generationRate and self.nombreProjectilesMax >= len(self.projectiles):
             speed = random.randint(5,10)
             #probas differentes en fonction de l'impact des causes sur le retard
-            types = np.random.choice(list(range(1,7)), size=None, replace=True, p=[0.24,0.21,0.17,0.10,0.21, 0.07])
+            types = np.random.choice(list(range(1,7)), size=None, replace=True, p=[0.2, 0.2, 0.1, 0.15, 0.25, 0.1])
             self.projectiles.append(Projectile(self.w, self.h, speed, types))
         
     def gameOver(self, player):

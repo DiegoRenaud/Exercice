@@ -1,18 +1,15 @@
-#from cgitb import reset
 import os
 #os.environ["SDL_VIDEODRIVER"] = "dummy"
 from os import remove
 from utils import colors, sp
 import pygame
-#from enum import Enum
-#from collections import namedtuple
 from player import Player
 from projectiles import Projectiles, Projectile
 import time
 import numpy as np
 import sys 
 
-
+#Création de la classe world, base du jeu
 class world:
     def __init__(self, generationRate=0.1, nombreProjectilesMax=8, width=480, height=640):
         self.w = width
@@ -42,7 +39,7 @@ class world:
         if keys[pygame.K_RIGHT]:
             action = 10
 
-                
+        #Update des positions du train et des projectiles        
         self.player.updatePos(action)
         self.projectiles.update()
         gameOver = self.projectiles.gameOver(self.player)
@@ -52,21 +49,16 @@ class world:
          
         return gameOver
 
-    #def go_screen(self):
-        #my_font = pygame.font.SysFont('Comic Sans MS', 30)
-        #text = my_font.render('GAME OVER', True, (255, 255, 255))
-        #self.display.blit(text, (50,50))
-        #pass
-    
+
 if __name__ == '__main__':
     game = world()
     
     #game loop
     while True:
         game_over = game.play_step_and_draw()
-    #    
+        
         if game_over == True:
-            break     
+            break     #si game over, le jeu est fini
     pygame.quit()
     
     

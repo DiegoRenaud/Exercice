@@ -3,7 +3,7 @@ import pygame
 import numpy as np
 
 class Player:
-    # height et width c'est ceux de l'ecran de jeu
+    # height et width sont les dimensions de l'ecran du jeu
     def __init__(self, height, width, largeur, hauteur):
         self.w = width
         self.h = height
@@ -14,7 +14,7 @@ class Player:
         self.hauteur = hauteur
         
     def updatePos(self, action):
-        # 
+        #interdiction de sortir du cadre 
         self.pos[0] += action
         if self.pos[0]<0:
             self.pos[0]=0
@@ -28,5 +28,6 @@ class Player:
         
     def draw(self, surface):
         surface.blit(self.locomotive, (self.pos[0] - self.largeur/2, self.pos[1] - self.hauteur/2))
-        #pygame.draw.circle(surface, colors.WHITE, (self.pos[0], self.pos[1]), 10)   
+        #self.blit affiche l'image qu'on lui demande à partir des coordonnées du point haut gauche de l'image
+   
 
